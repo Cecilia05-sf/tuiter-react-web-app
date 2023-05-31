@@ -21,17 +21,20 @@ function ExploreScreen() {
             </div>
             <ul className="nav nav-pills mb-2 mt-2">
                 <li className="nav-item">
-                    <a className="nav-link active">For You</a>
+                    {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                    <a className="nav-link active" href="#">For You</a>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link">Trending</a>
+                    {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                    <a className="nav-link" href="#">Trending</a>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link">News</a>
+                    {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                    <a className="nav-link" href="#">News</a>
                 </li>
             </ul>
             <div className="position-relative mb-2">
-                <img src="/images/starship2.png" className="w-100"/>
+                <img src="/images/starship2.png" className="w-100" alt=""/>
                 <h1 className="position-absolute wd-nudge-up text-white">
                     SpaceX Starship</h1>
             </div>
