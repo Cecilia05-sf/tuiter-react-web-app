@@ -1,6 +1,5 @@
 import React from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {toggleLike} from '../reducers/tuits-reducer';
 import {FaRegComment, FaRetweet, FaHeart, FaShareSquare, FaThumbsDown} from 'react-icons/fa';
 import { updateTuitThunk } from "../services/tuits-thunks";
 
@@ -9,10 +8,6 @@ const TuitStats = ({id}) => {
     const tuit = useSelector(state =>
         state.tuits.tuits.find(t => t._id === id));
     const dispatch = useDispatch();
-
-    const onLikeClick = () => {
-        dispatch(toggleLike(id));
-    }
 
     return (
         <div className="row">
