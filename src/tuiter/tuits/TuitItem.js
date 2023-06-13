@@ -3,29 +3,30 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faCertificate, faCheck} from '@fortawesome/free-solid-svg-icons';
 import TuitStats from "./TuitStats";
 import {useDispatch} from "react-redux";
-import {deleteTuit} from "../reducers/tuits-reducer";
+import {deleteTuitThunk} from "../services/tuits-thunks";
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
 const TuitItem = (
     {
         tuit = {
+            "_id": "123",
             "topic": "Space",
-            "userName": "SpaceX",
-            "title": "100s of SpaceX Starships land on Mars after a 6 month journey. 1000s of Martian colonists being building Mars Base 1",
+            "username": "SpaceX",
+            "handle": "@spacex",
             "time": "2h",
             "image": "spacex.png",
+            "title": "SpaceX's Mission",
             "liked": true,
+            "likes": 2345,
             "replies": 123,
             "retuits": 432,
-            "likes": 2345,
-            "handle": "@spacex",
             "tuit": "You want to wake up in the morning and think the future is going to be great - and that’s what being a spacefaring civilization is all about. It’s about believing in the future and thinking that the future will be better than the past. And I can’t think of anything more exciting than going out there and being among the stars"
         },
     }
 ) => {
     const dispatch = useDispatch();
     const deleteTuitHandler = (id) => {
-        dispatch(deleteTuit(id));
+        dispatch(deleteTuitThunk(id));
     }
     return (
         <li className="list-group-item">

@@ -1,10 +1,13 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { toggleLike } from '../reducers/tuits-reducer';
-import { FaRegComment, FaRetweet, FaRegHeart, FaHeart, FaShareSquare } from 'react-icons/fa';
+import {useSelector, useDispatch} from 'react-redux';
+import {toggleLike} from '../reducers/tuits-reducer';
+import {FaRegComment, FaRetweet, FaHeart, FaShareSquare, FaThumbsDown} from 'react-icons/fa';
+import { updateTuitThunk } from "../services/tuits-thunks";
 
-const TuitStats = ({ id }) => {
-    const tuit = useSelector(state => state.tuits.find(t => t._id === id));
+
+const TuitStats = ({id}) => {
+    const tuit = useSelector(state =>
+        state.tuits.tuits.find(t => t._id === id));
     const dispatch = useDispatch();
 
     const onLikeClick = () => {
@@ -14,19 +17,32 @@ const TuitStats = ({ id }) => {
     return (
         <div className="row">
             <div className="col">
-                <FaRegComment />
+                <FaRegComment/>
                 <span>{tuit.replies}</span>
             </div>
             <div className="col">
-                <FaRetweet />
+                <FaRetweet/>
                 <span>{tuit.retuits}</span>
             </div>
-            <div className="col" onClick={onLikeClick}>
-                {tuit.liked ? <FaHeart color="red" /> : <FaRegHeart />}
-                <span>{tuit.likes}</span>
+            <div className="col">
+                <FaHeart
+                    className="text-danger"
+                    onClick={() =>
+                        dispatch(updateTuitThunk({ ...tuit, likes: tuit.likes + 1 }))
+                    }
+                />
+                <span className="ms-2">{tuit.likes}</span>
             </div>
             <div className="col">
-                <FaShareSquare />
+                <FaThumbsDown
+                    onClick={() =>
+                        dispatch(updateTuitThunk({...tuit, dislikes: (tuit.dislikes || 0) + 1}))
+                    }
+                />
+                <span className="ms-2">{tuit.dislikes || 0}</span>
+            </div>
+            <div className="col">
+                <FaShareSquare/>
             </div>
         </div>
     );
